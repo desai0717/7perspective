@@ -6,7 +6,7 @@ export default function Contact() {
       <div className="max-w-2xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-800 mb-6">Contact Us</h1>
         <p className="text-gray-600 leading-relaxed mb-8">
-          We'd love to hear from you! Whether you have a question, a project idea, or just want to connect, please don't hesitate to reach out. Our team is ready to assist you with collaborations, explore innovative ideas, and discuss potential commissions. We value open communication and look forward to the opportunity to connect.
+          We&apos;d love to hear from you! Whether you have a question, a project idea, or just want to connect, please don&apos;t hesitate to reach out. Our team is ready to assist you with collaborations, explore innovative ideas, and discuss potential commissions. We value open communication and look forward to the opportunity to connect.
         </p>
 
         <div className="bg-white rounded-lg shadow-md p-6">
@@ -40,7 +40,6 @@ export default function Contact() {
               </label>
               <textarea
                 id="message"
-                rows="4"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Your Message"
               ></textarea>
