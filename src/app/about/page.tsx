@@ -9,7 +9,7 @@ export default function About() {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold text-gray-700 mb-3">Our Story</h2>
           <p className="text-gray-600 leading-relaxed mb-4">
-            Founded in [Year], [Company Name] was born from a vision to [briefly state the core vision or mission]. We believe in [mention a key principle or value] and strive to [mention a key action or goal]. Our journey began with [mention a significant starting point or event], and we've been passionately working towards [mention a long-term aspiration] ever since.
+            Founded in [Year], [Company Name] was born from a vision to [briefly state the core vision or mission]. We believe in [mention a key principle or value] and strive to [mention a key action or goal]. Our journey began with [mention a significant starting point or event], and we&apos;ve been passionately working towards [mention a long-term aspiration] ever since.
           </p>
           <p className="text-gray-600 leading-relaxed">
             We are a team of [mention the general type of people, e.g., dedicated professionals, creative individuals] who are united by a shared commitment to [reiterate a core value or goal].
@@ -19,7 +19,7 @@ export default function About() {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold text-gray-700 mb-3">Our Mission</h2>
           <p className="text-gray-600 leading-relaxed">
-            Our mission is to [clearly and concisely state the organization's mission]. We aim to achieve this by [list 2-3 key strategies or approaches]. We are driven by the desire to [mention the positive impact or outcome you want to create].
+            Our mission is to [clearly and concisely state the organization&apos;s mission]. We aim to achieve this by [list 2-3 key strategies or approaches]. We are driven by the desire to [mention the positive impact or outcome you want to create].
           </p>
         </section>
 
