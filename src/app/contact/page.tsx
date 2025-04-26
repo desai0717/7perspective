@@ -58,10 +58,17 @@ export default function Contact() {
           <p className="text-gray-600 leading-relaxed mb-2">
             You can also reach us through the following channels:
           </p>
+          <p className="text-gray-600 leading-relaxed mb-4 pt-2">
+            <strong><em>Ar. Pushkar Gaikwad</em></strong>
+          </p>
           <ul className="list-disc list-inside text-gray-600 leading-relaxed">
-            <li>Email: <a href="mailto:info@example.com" className="text-blue-500 hover:underline">info@example.com</a></li>
-            <li>Phone: <a href="tel:+1234567890" className="text-blue-500 hover:underline">+1 (234) 567-890</a></li>
-            <li>Address: [Your Company Address Here]</li>
+            <li>Email: <a href="mailto:pushkargaikwad7@gmail.com" className="text-blue-500 hover:underline">pushkargaikwad7@gmail.com</a></li>
+            <li>Phone: <a href="tel:+91909606821" className="text-blue-500 hover:underline">+91 909606821</a></li>
+            <li>
+              Address: <a href="https://maps.app.goo.gl/veHePs8SYLyX6GxV9?g_st=aw" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                Ug 104, Akruti Sankul, Tilak Road, Sadashiv Peth, Pune
+              </a>
+            </li>
           </ul>
         </div>
       </div>
