@@ -2,63 +2,80 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
-// Static project data
+// Dynamically import the ImageGallery component
+const ImageGallery = dynamic(() => import("./components/ImageGallery"), { ssr: false });
+
+// Project data with multiple images
 const projects = [
   {
     id: 1,
     name: "Modern Villa Design",
-    imageUrl: "/kara-eads-L7EwHkq1B2s-unsplash.jpg",
+    images: [
+      "/projects/villa/villa1.jpg",
+      "/projects/villa/villa2.jpg",
+      "/projects/villa/villa3.jpg",
+      "/projects/villa/villa4.jpg",
+    ],
   },
   {
     id: 2,
     name: "Urban Landscape Concept",
-    imageUrl: "/kara-eads-L7EwHkq1B2s-unsplash.jpg",
+    images: [
+      "/projects/Urban/urban1.jpg",
+      "/projects/Urban/urban2.jpg",
+      "/projects/Urban/urban3.jpg",
+      "/projects/Urban/urban4.jpg", 
+      "/projects/Urban/urban5.jpg",
+    ],
   },
   {
     id: 3,
     name: "Sustainable Housing Project",
-    imageUrl: "/kara-eads-L7EwHkq1B2s-unsplash.jpg",
+    images: [
+      "/projects/sustainable/sustainable1.jpg",
+      "/projects/sustainable/sustainable2.jpg",
+      "/projects/sustainable/sustainable3.jpg",
+      "/projects/sustainable/sustainable4.jpg",
+    ],
   },
   {
     id: 4,
-    name: "Commercial Building Facade",
-    imageUrl: "/kara-eads-L7EwHkq1B2s-unsplash.jpg",
+    name: "Row House Project",
+    images: [
+      "/projects/rowhouse/rowhouse1.jpg",
+      "/projects/rowhouse/rowhouse2.jpg",
+      "/projects/rowhouse/rowhouse3.jpg",
+    ],
   },
   {
     id: 5,
-    name: "Interior Renovation",
-    imageUrl: "/kara-eads-L7EwHkq1B2s-unsplash.jpg",
+    name: "Coastal Resort Design",
+    images: [
+      "/projects/coastal/coastal1.jpg",
+      "/projects/coastal/coastal2.jpg",
+      "/projects/coastal/coastal3.jpg",
+      "/projects/coastal/coastal4.jpg",
+      "/projects/coastal/coastal5.jpg",
+      "/projects/coastal/coastal6.jpg",
+    ],
   },
-  {
-    id: 6,
-    name: "Public Park Redesign",
-    imageUrl: "/kara-eads-L7EwHkq1B2s-unsplash.jpg",
-  },
-  {
-    id: 7,
-    name: "Another Great Project",
-    imageUrl: "/kara-eads-L7EwHkq1B2s-unsplash.jpg",
-  },
-  {
-    id: 8,
-    name: "Yet Another Design",
-    imageUrl: "/kara-eads-L7EwHkq1B2s-unsplash.jpg",
-  },
+  // Add more projects similarly
 ];
 
 export default function ProjectsPage() {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImages, setSelectedImages] = useState<string[] | null>(null);
+  const [galleryTitle, setGalleryTitle] = useState<string>("");
 
-  const openPopup = (imageUrl: string) => {
-    setSelectedImage(imageUrl);
-    setIsPopupOpen(true);
+  const openGallery = (images: string[], title: string) => {
+    setSelectedImages(images);
+    setGalleryTitle(title);
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false);
-    setSelectedImage(null);
+  const closeGallery = () => {
+    setSelectedImages(null);
+    setGalleryTitle("");
   };
 
   return (
@@ -74,14 +91,14 @@ export default function ProjectsPage() {
             <div
               key={project.id}
               className=""
-              onClick={() => openPopup(project.imageUrl)}
+              onClick={() => openGallery(project.images, project.name)}
             >
               <div className="relative h-45 w-full bg-white shadow-md overflow-hidden cursor-pointer transition-transform hover:scale-105">
                 <Image
-                  src={project.imageUrl}
+                  src={project.images[0]} // Show the first image as preview
                   alt={project.name}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  objectFit="object-cover"
                 />
               </div>
               <div className="p-4">
@@ -93,25 +110,12 @@ export default function ProjectsPage() {
           ))}
         </div>
 
-        {isPopupOpen && selectedImage && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center z-50">
-            <button
-              className="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-300"
-              onClick={closePopup}
-            >
-              &times;
-            </button>
-            <div className="relative w-[90vw] max-w-4xl">
-              <Image
-                src={selectedImage}
-                alt="Project Details"
-                layout="responsive"
-                width={1200}
-                height={800}
-                objectFit="contain"
-              />
-            </div>
-          </div>
+        {selectedImages && (
+          <ImageGallery
+            images={selectedImages}
+            title={galleryTitle}
+            onClose={closeGallery}
+          />
         )}
       </div>
     </div>
