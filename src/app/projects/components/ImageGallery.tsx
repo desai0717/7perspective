@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useEffect } from "react";
 
 interface ImageGalleryProps {
   images: string[];
@@ -20,10 +21,25 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title, onClose }) =
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        prev();
+      } else if (event.key === "ArrowRight") {
+        next();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [prev, next]);
+
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col items-center justify-center px-4">
-      <button onClick={onClose} className="absolute top-5 right-5 text-white text-2xl">&times;</button>
-      <h2 className="text-white text-2xl mb-4">{title}</h2>
+    <div className="fixed inset-0 bg-gray-100 bg-opacity-90 z-50 flex flex-col items-center justify-center px-4">
+      <button onClick={onClose} className="absolute top-5 right-5 text-gray-600 text-2xl">&times;</button>
 
       <div className="relative w-full max-w-4xl h-[60vh] mb-6">
         <Image
@@ -36,31 +52,33 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title, onClose }) =
         {/* Arrows */}
         <button
           onClick={prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-3xl font-bold hover:text-gray-300"
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 text-3xl font-bold hover:text-gray-800"
         >
           &#8249;
         </button>
         <button
           onClick={next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-3xl font-bold hover:text-gray-300"
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 text-3xl font-bold hover:text-gray-800"
         >
           &#8250;
         </button>
       </div>
 
-      <div className="flex gap-3 overflow-x-auto w-full max-w-4xl pb-4">
+      <h2 className="text-gray-500 text-2xl mb-4 italic">{title}</h2>
+
+      <div className="flex gap-3 justify-center overflow-x-auto w-full max-w-4xl pb-4 pt-4">
         {images.map((img, index) => (
           <div
             key={index}
-            className={`relative w-24 h-16 cursor-pointer border-2 ${
-              currentIndex === index ? "border-white" : "border-transparent"
-            }`}
+            className={`relative w-24 h-16 cursor-pointer border-3 ${currentIndex === index ? "border-gray-600 scale-120" : "border-transparent"
+              } transition-transform transform hover:scale-105`}
             onClick={() => setCurrentIndex(index)}
           >
-            <Image src={img} alt={`Thumb ${index}`} fill className="object-cover rounded" />
+            <Image src={img} alt={`Thumb ${index}`} fill className="object-cover" />
           </div>
         ))}
       </div>
+
     </div>
   );
 };
