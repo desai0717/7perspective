@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useEffect } from "react";
 
 interface ImageGalleryProps {
   images: string[];
@@ -19,6 +20,24 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title, onClose }) =
   const next = () => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
+
+
+  // Inside your component:
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        prev();
+      } else if (event.key === "ArrowRight") {
+        next();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [prev, next]);
+
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col items-center justify-center px-4">
@@ -52,9 +71,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title, onClose }) =
         {images.map((img, index) => (
           <div
             key={index}
-            className={`relative w-24 h-16 cursor-pointer border-2 ${
-              currentIndex === index ? "border-white" : "border-transparent"
-            }`}
+            className={`relative w-24 h-16 cursor-pointer border-2 ${currentIndex === index ? "border-white" : "border-transparent"
+              }`}
             onClick={() => setCurrentIndex(index)}
           >
             <Image src={img} alt={`Thumb ${index}`} fill className="object-cover rounded" />
