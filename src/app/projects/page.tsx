@@ -26,8 +26,7 @@ const projects = [
       "/projects/Urban/urban1.jpg",
       "/projects/Urban/urban2.jpg",
       "/projects/Urban/urban3.jpg",
-      "/projects/Urban/urban4.jpg", 
-      "/projects/Urban/urban5.jpg",
+      "/projects/Urban/urban4.jpg",
     ],
   },
   {
