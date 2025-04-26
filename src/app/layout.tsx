@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "7perspective",
-  description: "Seven unique perspectives woven into space.",
+  description: "Turning your blueprint into reality.",
   icons: {
     icon: "/favicon.ico",
   },

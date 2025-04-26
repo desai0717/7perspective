@@ -14,7 +14,7 @@ export default function Contact() {
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">Get in Touch</h2>
           <form 
             className="space-y-4"
-            action="https://formsubmit.co/kuldeepdesai04@gmail.com"
+            action="https://formsubmit.co/pushkargaikwad7@gmail.com"
             method="POST"
           >
             <input type="hidden" name="_captcha" value="false" />
